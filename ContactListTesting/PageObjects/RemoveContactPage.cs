@@ -25,26 +25,26 @@ namespace ContactListTesting.PageObjects
 
         public AddContactPage ClickViewDetailsBtn()
         {
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
 
-            wait.Until(d => ViewContactDetails?.Displayed);
+            //wait.Until(d => ViewContactDetails?.Displayed);
             ViewContactDetails?.Click();
             return new AddContactPage(driver);
         }
        
         public void ClickDeleteContactBtn()
         {
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
 
-            wait.Until(d => DeleteContactBtn?.Displayed);
+            //wait.Until(d => DeleteContactBtn?.Displayed);
             DeleteContactBtn?.Click();
         }
 

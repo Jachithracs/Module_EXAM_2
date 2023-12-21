@@ -1,6 +1,7 @@
 ﻿using CasekaroModel.Utilities;
 using ContactListTesting.PageObjects;
 using ContactListTesting.Utilities;
+using OpenQA.Selenium;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -48,12 +49,15 @@ namespace ContactListTesting.TestScripts
                 contactList.ClickSubmit(email, password);
                 Log.Information("Login to the Customer Account Completed");
                 Thread.Sleep(3000);
+                
 
                 TakeScreenShot();
                 try
                 {
-                    Assert.IsTrue(driver?.Url.Contains("contactList"));
-
+                    IWebElement ContactHeader = driver.FindElement(By.XPath("(//div[@class='main-content'])/header/h1"));
+                    Assert.That(ContactHeader.Text.Contains("Contact"));
+                    //Assert.IsTrue(driver?.Url.Contains("contactList"));
+                    
                     Log.Information("Test passed for Create Account");
                     test = extent.CreateTest("Create Account Link Test");
                     test.Pass("Create Account Link success");
@@ -99,11 +103,11 @@ namespace ContactListTesting.TestScripts
                 Log.Information("Adding new Contact Completed");
                 Thread.Sleep(3000);
 
-                TakeScreenShot();
                 try
                 {
                     Assert.IsTrue(driver?.Title.Contains("My Contacts"));
 
+                    TakeScreenShot();
                     Log.Information("Test passed for Creating Add Contact Account");
                     test = extent.CreateTest("Creating Add Contact Account Link Test");
                     test.Pass("Creating Add Contact Link success");
@@ -113,6 +117,7 @@ namespace ContactListTesting.TestScripts
                 {
                     Log.Error($"Test failed for Creating Add Contact. \n Exception: {ex.Message}");
 
+                    TakeScreenShot();
                     test = extent.CreateTest("Creating Add Contact Link Test");
                     test.Fail("Creating Add Contact Link failed");
                 }

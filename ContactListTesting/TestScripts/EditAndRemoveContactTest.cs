@@ -54,7 +54,6 @@ namespace ContactListTesting.TestScripts
                 try
                 {
                     Assert.IsTrue(driver?.Url.Contains("contactList"));
-
                     Log.Information("Test passed for Create Account");
                     test = extent.CreateTest("Create Account Link Test");
                     test.Pass("Create Account Link success");
@@ -72,7 +71,6 @@ namespace ContactListTesting.TestScripts
             removeContact.ClickViewDetailsBtn();
             Thread.Sleep(3000);
             RemoveContactPage remove = new RemoveContactPage(driver);
-            
             remove.ClickDeleteContactBtn();
             
 
@@ -83,19 +81,25 @@ namespace ContactListTesting.TestScripts
             TakeScreenShot();
             try
             {
-                DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-                wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-                wait.Timeout = TimeSpan.FromSeconds(10);
-                wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-                wait.Message = "element not found";
+                //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+                //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+                //wait.Timeout = TimeSpan.FromSeconds(10);
+                //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+                //wait.Message = "element not found";
 
-                wait.Until(d => d.Url.Contains("contactList"));
-
-                Assert.IsTrue(driver?.Url.Contains("contactList"));
-
+                //wait.Until(d => d.Url.Contains("contactList"));
+                Console.WriteLine("url " + driver.Url);
+                Thread.Sleep(2000);
+                Assert.That(driver.Url.Contains("contactList"));
+               
                 Log.Information("Test passed for Delete Contact Details");
+                TakeScreenShot();
+                var ss = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;//1
                 test = extent.CreateTest("Delete Contact Details Test");
+                test.AddScreenCaptureFromBase64String(ss);//
+                
                 test.Pass("Delete Contact Details success");
+                test.Info("Delete Contact Details success");
 
             }
             catch (AssertionException ex)

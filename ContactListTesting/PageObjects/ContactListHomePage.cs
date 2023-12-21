@@ -42,13 +42,13 @@ namespace ContactListTesting.PageObjects
             EmailInputBox?.SendKeys(email);
             PasswordInputBox?.SendKeys(password);
 
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
 
-            wait.Until(d => SubmitBtn?.Displayed);
+            //wait.Until(d => SubmitBtn?.Displayed);
             SubmitBtn?.SendKeys(Keys.Enter);
             return new AddContactPage(driver);
         }

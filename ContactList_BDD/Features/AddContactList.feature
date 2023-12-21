@@ -3,9 +3,11 @@
 This feature is used to test when user login with valid email and valid password and 
 then add new contact in the list.
 
+Background: User is in the Herokuapp Login Page
+
 @End-To-End-Login-And-AddNewContact-ViewContactDetail
 Scenario: User login and add a new contact and view the details of contact entered.
-	Given User is in the Herokuapp Login Page
+
 	When User Enter a correct email in the input box '<LoginEmail>'
 	When User Enter a correct password in the input box '<Password>'
 	Then User redirect to the My Contacts Page

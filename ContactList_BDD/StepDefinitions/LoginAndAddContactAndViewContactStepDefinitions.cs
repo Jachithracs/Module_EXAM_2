@@ -6,23 +6,25 @@ using ContactList_BDD.Hooks;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using AventStack.ExtentReports.MarkupUtils;
 
 namespace ContactList_BDD.StepDefinitions
 {
     [Binding]
     public class LoginAndAddContactAndViewContactStepDefinitions : Corecodes
     {
-        IWebDriver? driver = BeforeHook.driver;
-        [Given(@"User is in the Herokuapp Login Page")]
-        public void GivenUserIsInTheHerokuappLoginPage()
-        {
-            driver.Url = "https://thinking-tester-contact-list.herokuapp.com/";
-            driver.Manage().Window.Maximize();
-        }
-
+        IWebDriver? driver = AllHooks.driver;
+        //[Given(@"User is in the Herokuapp Login Page")]
+        //public void GivenUserIsInTheHerokuappLoginPage()
+        //{
+        //    driver.Url = "https://thinking-tester-contact-list.herokuapp.com/";
+        //    driver.Manage().Window.Maximize();
+        //}
+        
         [When(@"User Enter a correct email in the input box '([^']*)'")]
         public void WhenUserEnterACorrectEmailInTheInputBox(string email)
         {
+            AllHooks.test = AllHooks.extent.CreateTest("Add To Cart Test");
             IWebElement? emailinput = driver?.FindElement(By.Id("email"));
             Console.WriteLine(email);
             emailinput.SendKeys(email);
@@ -43,6 +45,9 @@ namespace ContactList_BDD.StepDefinitions
         [Then(@"User redirect to the My Contacts Page")]
         public void ThenUserRedirectToTheMyContactsPage()
         {
+            TakeScreenShot(driver);
+            var ss = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;//1
+            AllHooks.test.AddScreenCaptureFromBase64String(ss);//
             Assert.That(driver.Url.Contains("contactList"));
         }
 
@@ -101,7 +106,7 @@ namespace ContactList_BDD.StepDefinitions
         [When(@"User enter the Address2 '([^']*)'")]
         public void WhenUserEnterTheAddress2(string address2)
         {
-            IWebElement address2input = driver.FindElement(By.XPath("//input[@id='street1']"));
+            IWebElement address2input = driver.FindElement(By.XPath("//input[@id='street2']"));
             address2input.SendKeys(address2);
         }
         [When(@"User enter the city '([^']*)'")]
@@ -152,7 +157,11 @@ namespace ContactList_BDD.StepDefinitions
             try
             {
                 Assert.That(driver.Url.Contains("contactDetails"));
+                TakeScreenShot(driver);
+                var ss = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;//1
+                AllHooks.test.AddScreenCaptureFromBase64String(ss);//
                 Log.Information("Login And Add Contact Pass");
+                AllHooks.test.Pass("pASSED");
 
             }
             catch (AssertionException ex)

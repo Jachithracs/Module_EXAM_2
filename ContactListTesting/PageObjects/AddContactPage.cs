@@ -79,13 +79,13 @@ namespace ContactListTesting.PageObjects
             PostalInputBox?.SendKeys(postal);
             CountryInputBox?.SendKeys(country);
 
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
 
-            wait.Until(d => SubmitBtn?.Displayed);
+            //wait.Until(d => SubmitBtn?.Displayed);
 
             SubmitBtn?.SendKeys(Keys.Enter);
             return new AddContactPage(driver);
@@ -93,26 +93,26 @@ namespace ContactListTesting.PageObjects
 
         public AddContactPage ClickDateofBirth(string dob)
         {
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
 
-            wait.Until(d => DateofBirthInputBox?.Displayed);
+            //wait.Until(d => DateofBirthInputBox?.Displayed);
             DateofBirthInputBox?.SendKeys(dob);
             return new AddContactPage(driver);
         }
 
         public AddContactPage ClickViewDetailsBtn()
         {
-            DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
-            wait.PollingInterval = TimeSpan.FromMilliseconds(100);
-            wait.Timeout = TimeSpan.FromSeconds(10);
-            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            wait.Message = "element not found";
+            //DefaultWait<IWebDriver> wait = new DefaultWait<IWebDriver>(driver);
+            //wait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            //wait.Timeout = TimeSpan.FromSeconds(10);
+            //wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            //wait.Message = "element not found";
             
-            wait.Until(d => ViewContactDetails?.Displayed);
+            //wait.Until(d => ViewContactDetails?.Displayed);
             ViewContactDetails?.Click();
             return new AddContactPage(driver); 
         }

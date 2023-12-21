@@ -12,7 +12,7 @@ namespace ContactList_BDD.StepDefinitions
     [Binding]
     public class RemoveContactStepDefinition : Corecodes
     {
-        IWebDriver? driver = BeforeHook.driver;
+        IWebDriver? driver = AllHooks.driver;
 
         [When(@"User click on the Delete Contact Button")]
         public void WhenUserClickOnTheDeleteContactButton()
